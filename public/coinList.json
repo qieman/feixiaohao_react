@@ -1,0 +1,29 @@
+{
+  "curr_page": 1,
+  "max_page": 22,
+  "table_type":"coinList",
+  "data": [
+    {
+      "name": "BTC",
+      "coin_code": "bitcoin",
+      "mc": 19827,
+      "price": 123,
+      "flow": 123123,
+      "vol": 123123123,
+      "rank": "5.3",
+      "kline": "1,112,445,25,10,45,12,44,99,57,255",
+      "icon": "https://static.feixiaohao.com/coin/7033f2f2c2a16094bbb3bafc47205ba8_small.png"
+    },
+    {
+      "name": "ETH",
+      "coin_code": "etherent",
+      "mc": 19827,
+      "price": 123,
+      "flow": 123123,
+      "vol": 123123123,
+      "rank": "5.3",
+      "kline": "1,112,445,25,10,45,12,44,99,57,255",
+      "icon": "https://static.feixiaohao.com/coin/8cc736e4abd44c3d689eb1599a27edb_small.png"
+    }
+  ]
+}
