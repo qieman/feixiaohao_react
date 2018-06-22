@@ -13,7 +13,7 @@ class App extends Component {
             <Provider store={store}>
                 <BrowserRouter>
                     <Switch>
-                        <Route ex patch='/' component={Index}/>
+                        <Route exact  patch='/' component={Index}/>
                     </Switch>
                 </BrowserRouter>
             </Provider>

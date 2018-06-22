@@ -37,7 +37,7 @@ const demoDate = {
     mainTable: {
         curr_page: 1,
         max_page: 22,
-        table_type:'coinList',
+        table_type: 'coinList',
         data: [
             {
                 name: 'BTC',
@@ -67,8 +67,7 @@ const demoDate = {
 
 class PageList extends React.Component {
     render() {
-        const {curr, max} = this.props;
-        console.log('max', max);
+        const {curr, max ,pageClick} = this.props;
         let list = [];
         if (max <= 6) {
             for (let i = 1; i < max + 1; i++) {
@@ -84,12 +83,9 @@ class PageList extends React.Component {
             list = [1, "...", curr - 2, curr - 1, curr, curr + 1, curr + 2]
         }
         return (<div className="new-page-list">
-            <Link to="">
-                &lt;
-            </Link>
-            {list.map(data => <NavLink to={data !== '...' ? "/list_" + data : '#'}
-                                       activeClassName='active'>{data}</NavLink>)}
-            <Link to="">&gt;</Link>
+            <Link to="/" onClick={()=>{pageClick('coinList',1)}}>&lt;</Link>
+            {list.map(data => <NavLink to={data !== '...' ? "/list_" + data : '#'}  activeClassName='active' onClick={()=>{pageClick('coinList',1)}} >{data}</NavLink>)}
+            <Link to="/" onClick={()=>{pageClick('coinList',1)}}>&gt;</Link>
         </div>)
     }
 }
@@ -127,9 +123,11 @@ class SlideBtn extends React.Component {
     }
 }
 
-const mainTable = ({maintable}) => {
-    maintable = demoDate.mainTable;
-    const {curr_page, max_page, data} = maintable;
+const mainTable = ({mainTable,onClick}) => {
+   /* mainTable = demoDate.mainTable;*/
+    console.log('mainTable', mainTable);
+    const {curr_page, max_page, data} = mainTable;
+    console.log('data',data);
     return (
         <div className="new-main-box">
             <div className="new-box-tit new-tab-tit">
@@ -141,7 +139,7 @@ const mainTable = ({maintable}) => {
                     <SlideBtn btndata={slideBtns[2]}/>
                     <a className="new-link-btn">下载表格<i className="fxh fxh-download"/></a>
                 </div>
-                <PageList curr={curr_page} max={max_page}/>
+                <PageList curr={curr_page} max={max_page} pageClick={onClick}/>
 
             </div>
 
@@ -169,8 +167,9 @@ const mainTable = ({maintable}) => {
                         <td><Link to={'/curreries/' + cell.coin_code} className="">{cell.price}</Link></td>
                         <td>{cell.flow}<i className="ifo"/>**</td>
                         <td><Link to={'/curreries/' + cell.coin_code}>{cell.vol}</Link></td>
-                        <td><span className={cell.rank>0?'new-arrow-up':'new-arrow-down'}>{cell.rank+'%'}</span></td>
-                        <td><span className="line2" data-peity='{"stroke": "#3ca316"}' ref={(code)=>{
+                        <td><span className={cell.rank > 0 ? 'new-arrow-up' : 'new-arrow-down'}>{cell.rank + '%'}</span>
+                        </td>
+                        <td><span className="line2" data-peity='{"stroke": "#3ca316"}' ref={(code) => {
                             $(code).peity('line', {
                                 width: 80,
                                 height: 13,
@@ -184,7 +183,7 @@ const mainTable = ({maintable}) => {
                 </tbody>
             </table>
             <div className="new-table-bar">
-                <PageList curr={curr_page} max={max_page}/>
+                <PageList curr={curr_page} max={max_page} pageClick={onClick}/>
                 备注：* Not Mineable ** Significantly Premined
             </div>
         </div>
